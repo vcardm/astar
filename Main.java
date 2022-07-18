@@ -21,7 +21,7 @@ public class Main {
         int rows = 15;
         int cols = 15;
 
-        //generating path using FindPath
+        //generating path using Astar
         Astar path = new Astar(rows, cols, initialNode, finalNode);
         int[][] blocksArray = new int[][]{{(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
             (int) (Math.random()*10)}, {(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
