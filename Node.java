@@ -14,18 +14,18 @@ public class Node {
 	}
 	
 	//new methods
-	public void calculateHeuristic(Node finalNode) {
+	public void calculateHeuristic(Node finalNode) { //used in SetNodes for calulcating the heuristic
         this.h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
     }
     
-    public void setNodeData(Node currentNode, int cost) {
+    public void setNodeData(Node currentNode, int cost) { //used in filepath when checking for betterpath, if the new g cost is less than the original g cost, set the node with the new g cost
         int gCost = currentNode.getG() + cost;
          setParent(currentNode);
          setG(gCost);
          calculateFinalCost();
     }
     
-    public boolean checkBetterPath(Node currentNode, int cost) {
+    public boolean checkBetterPath(Node currentNode, int cost) { //used in checkNode in filepath in order to remove/add to the openlist (nodes discovered by not visisted yet)
         int gCost = currentNode.getG() + cost;
         if (gCost < getG()) {
             setNodeData(currentNode, cost);
@@ -35,7 +35,7 @@ public class Node {
          return false;
     }
     
-    private void calculateFinalCost() {
+    private void calculateFinalCost() { //used in setNodeData
         int finalCost = getG() + getH();
         setF(finalCost);
     }
