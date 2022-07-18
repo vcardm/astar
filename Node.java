@@ -3,7 +3,6 @@ public class Node {
 	private Node parent;
 	private boolean isBlock; //when calculating the path
 	
-	
 	public Node(int r, int c){ // int t
 		super();
 		row = r;
@@ -72,6 +71,15 @@ public class Node {
 	public int getCol(){
 		return col;
 	}
+	
+	//updated to include isBlock
+	public boolean isBlock() {
+        	return isBlock;
+    	}
+    
+    	public void setBlock(boolean isBlock) {
+        	this.isBlock = isBlock;
+    	}
 	
 	public boolean equals(Object in){
 		//typecast to Node
