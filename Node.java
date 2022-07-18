@@ -1,16 +1,44 @@
 public class Node {
-	
-	private int row, col, f, g, h, type;
+	private int row, col, f, g, h;
 	private Node parent;
-   
-	public Node(int r, int c, int t){
+	private boolean isBlock; //when calculating the path
+	
+	
+	public Node(int r, int c){ // int t
+		super();
 		row = r;
 		col = c;
-		type = t;
-		parent = null;
+// 		type = t;
+// 		parent = null;
 		//type 0 is traverseable, 1 is not
 	}
 	
+	//new methods
+	public void calculateHeuristic(Node finalNode) {
+        this.h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+    }
+    
+    public void setNodeData(Node currentNode, int cost) {
+        int gCost = currentNode.getG() + cost;
+         setParent(currentNode);
+         setG(gCost);
+         calculateFinalCost();
+    }
+    
+    public boolean checkBetterPath(Node currentNode, int cost) {
+        int gCost = currentNode.getG() + cost;
+        if (gCost < getG()) {
+            setNodeData(currentNode, cost);
+            
+            return true;
+        }
+         return false;
+    }
+    
+    private void calculateFinalCost() {
+        int finalCost = getG() + getH();
+        setF(finalCost);
+    }
 	//mutator methods to set values
 	public void setF(){
 		f = g + h;
