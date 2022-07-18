@@ -1,0 +1,19 @@
+import java.util.*;
+// a. environment should be a 15x15 tile-based world that randomly generates nodes that are unpathable (blocks) in 10% of 
+// the nodes (This should be done each time the program compiles ensuring that there are different environment makeups 
+// each run.)
+// b. The program should display the generated environment when the program runs, and should allow the user to 
+// select a starting node and goal node. (done via text input into the console )
+// once the start and goal nodes have been defined, the program should run the A* algorithm to find a path.
+// i. The path should be displayed (series of [x,y] nodes, highlighting nodes, or actually moving the agent) if one exists, 
+// ii. or a message indicating that a path could not be found.  
+// c. user should be able to continue specifying starting and goal nodes after paths have been found.
+
+public class FindPath {
+    private static int set_hv_cost = 10; //default horiztonal and vertical cost of moving: 10
+    private int hvCost;
+    private Node[][] searchArea;
+    private PriorityQueue<Node> openList;
+    private Set<Node> closedSet;
+    private Node initialNode;
+    private Node finalNode;
