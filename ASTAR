@@ -17,3 +17,18 @@ public class FindPath {
     private Set<Node> closedSet;
     private Node initialNode;
     private Node finalNode;
+    
+    public FindPath(int rows, int cols, Node initialNode, Node finalNode, int hvCost) {
+        this.hvCost = hvCost;
+        setInitialNode(initialNode);
+        setFinalNode(finalNode);
+        this.searchArea = new Node[rows][cols];
+        this.openList = new PriorityQueue<Node>(new Comparator<Node>() {
+            @Override
+            public int compare(Node node0, Node node1) {
+                return Integer.compare(node0.getF(), node1.getF());
+            }
+        });
+        setNodes();
+        this.closedSet = new HashSet<>(); //create a has set for the clostset of nodes not discovered
+    }
