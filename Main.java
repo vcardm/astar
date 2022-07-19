@@ -14,7 +14,7 @@ public class Main {
         Node firstNode = new Node(row, col);
 
         ////user input for goal node
-        System.out.println("Enter the goal node, specifying the row and column (x y): ");
+        System.out.print("Enter the goal node, specifying the row and column (x y): ");
         row = in.nextInt(); //save input in respected x,y -> row/columns
         col = in.nextInt();
         Node goalNode = new Node(row, col);
@@ -36,7 +36,7 @@ public class Main {
         for(int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++) {
                 int block = 0;
-                for (int b = 0; b < blocksArray.length; b++) {
+                for (int b = 0; b < blocksArray.length; b++) { //displays somes blocks
                     row = blocksArray[b][0];
                     col = blocksArray[b][1];
                     if(row==i && col==j) {
@@ -45,11 +45,11 @@ public class Main {
                     }
                 }
                 if(block==0)
-                System.out.print("-"+" ");
+                System.out.print("<>"+" ");
             }
             System.out.println("\n");
         }
-        path.setBlocks(blocksArray);
+        path.generateBlocks(blocksArray);
         List<Node> optimalPath = path.findPath();
         for (Node node : optimalPath) {
             System.out.print("["+node.getRow()+","+node.getCol()+"] ");

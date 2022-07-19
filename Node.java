@@ -13,7 +13,7 @@ public class Node {
 	}
 	
 	//new methods
-	public void calculateHeuristic(Node goalNode) { //used in SetNodes for calulcating the heuristic
+	public void calculateHeuristic(Node goalNode) { //used in SetNodes for calulcating the heuristic which is goal node rowcol - row/col
         this.h = Math.abs(goalNode.getRow() - getRow()) + Math.abs(goalNode.getCol() - getCol());
     }
     
@@ -21,10 +21,11 @@ public class Node {
         int gCost = currentNode.getG() + cost;
          setParent(currentNode);
          setG(gCost);
-         calculateFinalCost();
+         finalCost();
     }
     
-    public boolean checkBetterPath(Node currentNode, int cost) { //used in checkNode in filepath in order to remove/add to the openlist (nodes discovered by not visisted yet)
+    public boolean checkStartCost(Node currentNode, int cost) { //check cost o g and if a shorter g is found meaning shorter path is found, replace it with the new g cost
+		//used in checkNode in filepath in order to remove/add to the openlist (nodes discovered by not visisted yet)
         int gCost = currentNode.getG() + cost;
         if (gCost < getG()) {
             setNodeData(currentNode, cost);
@@ -34,7 +35,7 @@ public class Node {
          return false;
     }
     
-    private void calculateFinalCost() { //used in setNodeData
+    private void finalCost() { //used in setNodeData and adds g and h cost 
         int finalCost = getG() + getH();
         setF(finalCost);
     }
@@ -91,5 +92,5 @@ public class Node {
 	public String toString(){
 		return "Node: " + row + "_" + col;
 	}
-	
+
 }

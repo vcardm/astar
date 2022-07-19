@@ -50,7 +50,7 @@ public class Astarr {
         }
     }
 
-    public void setBlocks(int[][] blocksArray) {
+    public void generateBlocks(int[][] blocksArray) {
         for (int i = 0; i < blocksArray.length; i++) {
             int row = blocksArray[i][0];
             int col = blocksArray[i][1];
@@ -140,7 +140,7 @@ public class Astarr {
                 nextNode.setNodeData(currentNode, cost);
                 getOpenList().add(nextNode);
             } else {
-                boolean changed = nextNode.checkBetterPath(currentNode, cost);
+                boolean changed = nextNode.checkStartCost(currentNode, cost);
                 if (changed) {
                     //updates the open list by addiing or removing the changed node to update the queue                    
                     getOpenList().remove(nextNode);
@@ -209,4 +209,5 @@ public class Astarr {
     public void setHvCost(int hvCost) {
         this.hvCost = hvCost;
     }
+
 }
