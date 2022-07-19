@@ -12,7 +12,7 @@ import java.util.*;
 public class Astarr {
     private static int set_hv_cost = 10; //the set horizontal and vertical cost to 10 
     private int hvCost;
-    private Node[][] searchArea;
+    private Node[][] area;
     //used for start and goal node
     private Node firstNode;
     private Node goalNode;
@@ -25,7 +25,7 @@ public class Astarr {
         this.hvCost = hvCost;
         setfirstNode(firstNode);
         setgoalNode(goalNode);
-        this.searchArea = new Node[rows][cols];
+        this.area = new Node[rows][cols];
         this.openList = new PriorityQueue<Node>(new Comparator<Node>() {
             @Override
             public int compare(Node node0, Node node1) {
@@ -41,11 +41,11 @@ public class Astarr {
     }
 
     private void setNodes() {
-        for (int i = 0; i < searchArea.length; i++) {
-            for (int j = 0; j < searchArea[0].length; j++) {
+        for (int i = 0; i < area.length; i++) {
+            for (int j = 0; j < area[0].length; j++) {
                 Node node = new Node(i, j);
                 node.calculateHeuristic(getgoalNode());
-                this.searchArea[i][j] = node;
+                this.area[i][j] = node;
             }
         }
     }
@@ -68,7 +68,7 @@ public class Astarr {
             if (isgoalNode(currentNode)) {
                 return getPath(currentNode);
             } else {
-                addAdjacentNodes(currentNode);
+                addNextNodes(currentNode);
             }
         }
         return new ArrayList<Node>();
@@ -85,40 +85,40 @@ public class Astarr {
         return path;
     }
 
-    private void addAdjacentNodes(Node currentNode) {
-        addAdjacentUpperRow(currentNode);
-        addAdjacentMiddleRow(currentNode);
-        addAdjacentLowerRow(currentNode);
+    private void addNextNodes(Node currentNode) {
+        addTopRow(currentNode);
+        addMiddleRow(currentNode);
+        addBottomRow(currentNode);
     }
 
-    private void addAdjacentLowerRow(Node currentNode) {
+    private void addBottomRow(Node currentNode) {
         int row = currentNode.getRow();
         int col = currentNode.getCol();
         int lowerRow = row + 1;
-        if (lowerRow < getSearchArea().length) {
+        if (lowerRow < getarea().length) {
             if (col - 1 >= 0) {
                 checkNode(currentNode, col - 1, lowerRow, lowerRow); //getDiagonalCost()); // Comment this line if diagonal movements are not allowed
             }
-            if (col + 1 < getSearchArea()[0].length) {
+            if (col + 1 < getarea()[0].length) {
                 checkNode(currentNode, col + 1, lowerRow, lowerRow); //getDiagonalCost()); // Comment this line if diagonal movements are not allowed
             }
             checkNode(currentNode, col, lowerRow, getHvCost());
         }
     }
 
-    private void addAdjacentMiddleRow(Node currentNode) {
+    private void addMiddleRow(Node currentNode) {
         int row = currentNode.getRow();
         int col = currentNode.getCol();
         int middleRow = row;
         if (col - 1 >= 0) {
             checkNode(currentNode, col - 1, middleRow, getHvCost());
         }
-        if (col + 1 < getSearchArea()[0].length) {
+        if (col + 1 < getarea()[0].length) {
             checkNode(currentNode, col + 1, middleRow, getHvCost());
         }
     }
 
-    private void addAdjacentUpperRow(Node currentNode) {
+    private void addTopRow(Node currentNode) {
         int row = currentNode.getRow();
         int col = currentNode.getCol();
         int upperRow = row - 1;
@@ -126,7 +126,7 @@ public class Astarr {
             if (col - 1 >= 0) {
                 checkNode(currentNode, col - 1, upperRow, upperRow);
             }
-            if (col + 1 < getSearchArea()[0].length) {
+            if (col + 1 < getarea()[0].length) {
                 checkNode(currentNode, col + 1, upperRow, upperRow);
             }
             checkNode(currentNode, col, upperRow, getHvCost());
@@ -134,7 +134,7 @@ public class Astarr {
     }
 
     private void checkNode(Node currentNode, int col, int row, int cost) {
-        Node adjacentNode = getSearchArea()[row][col];
+        Node adjacentNode = getarea()[row][col];
         if (!adjacentNode.isBlock() && !getClosedSet().contains(adjacentNode)) {
             if (!getOpenList().contains(adjacentNode)) {
                 adjacentNode.setNodeData(currentNode, cost);
@@ -159,7 +159,7 @@ public class Astarr {
     }
 
     private void setBlock(int row, int col) {
-        this.searchArea[row][col].setBlock(true);
+        this.area[row][col].setBlock(true);
     }
 
     public Node getfirstNode() {
@@ -178,12 +178,12 @@ public class Astarr {
         this.goalNode = goalNode;
     }
 
-    public Node[][] getSearchArea() {
-        return searchArea;
+    public Node[][] getarea() {
+        return area;
     }
 
-    public void setSearchArea(Node[][] searchArea) {
-        this.searchArea = searchArea;
+    public void setarea(Node[][] area) {
+        this.area = area;
     }
 
     public PriorityQueue<Node> getOpenList() {
