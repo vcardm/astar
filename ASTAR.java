@@ -13,15 +13,16 @@ public class Astar {
     private static int set_hv_cost = 10; //the set horizontal and vertical cost to 10 
     private int hvCost;
     private Node[][] searchArea;
-    private PriorityQueue<Node> openList;
-    private Set<Node> closedSet;
+    //used for start and goal node
     private Node initialNode;
     private Node finalNode;
+//create open and closed lists
+    private PriorityQueue<Node> openList;
+    private Set<Node> closedSet;
 
     //method for dinding path 
     public Astar(int rows, int cols, Node initialNode, Node finalNode, int hvCost) {
         this.hvCost = hvCost;
-        //this.diagonalCost = diagonalCost;
         setInitialNode(initialNode);
         setFinalNode(finalNode);
         this.searchArea = new Node[rows][cols];
@@ -123,10 +124,10 @@ public class Astar {
         int upperRow = row - 1;
         if (upperRow >= 0) {
             if (col - 1 >= 0) {
-                //checkNode(currentNode, col - 1, upperRow, getDiagonalCost()); // Comment this if diagonal movements are not allowed
+                checkNode(currentNode, col - 1, upperRow, upperRow);
             }
             if (col + 1 < getSearchArea()[0].length) {
-                //checkNode(currentNode, col + 1, upperRow, getDiagonalCost()); // Comment this if diagonal movements are not allowed
+                checkNode(currentNode, col + 1, upperRow, upperRow);
             }
             checkNode(currentNode, col, upperRow, getHvCost());
         }
