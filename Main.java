@@ -11,18 +11,18 @@ public class Main {
         System.out.println("Enter the starting node, specifying the row and column (x y): ");
         row = in.nextInt(); //save input in respected x,y -> row/columns
         col = in.nextInt();
-        Node initialNode = new Node(row, col);
+        Node firstNode = new Node(row, col);
 
         ////user input for goal node
         System.out.println("Enter the goal node, specifying the row and column (x y): ");
         row = in.nextInt(); //save input in respected x,y -> row/columns
         col = in.nextInt();
-        Node finalNode = new Node(row, col);
+        Node goalNode = new Node(row, col);
         int rows = 15;
         int cols = 15;
 
         //generating path using Astar
-        Astar path = new Astar(rows, cols, initialNode, finalNode);
+        Astarr path = new Astarr(rows, cols, firstNode, goalNode);
         int[][] blocksArray = new int[][]{{(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
             (int) (Math.random()*10)}, {(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
             (int) (Math.random()*10)}, {(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 

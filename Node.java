@@ -13,8 +13,8 @@ public class Node {
 	}
 	
 	//new methods
-	public void calculateHeuristic(Node finalNode) { //used in SetNodes for calulcating the heuristic
-        this.h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+	public void calculateHeuristic(Node goalNode) { //used in SetNodes for calulcating the heuristic
+        this.h = Math.abs(goalNode.getRow() - getRow()) + Math.abs(goalNode.getCol() - getCol());
     }
     
     public void setNodeData(Node currentNode, int cost) { //used in filepath when checking for betterpath, if the new g cost is less than the original g cost, set the node with the new g cost
@@ -39,7 +39,7 @@ public class Node {
         setF(finalCost);
     }
 	//mutator methods to set values
-	public void setF(){
+	public void setF(int value){
 		f = g + h;
 	}
 	public void setG(int value){

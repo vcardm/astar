@@ -9,22 +9,22 @@ import java.util.*;
 // ii. or a message indicating that a path could not be found.  
 // c. user should be able to continue specifying starting and goal nodes after paths have been found.
 
-public class Astar {
+public class Astarr {
     private static int set_hv_cost = 10; //the set horizontal and vertical cost to 10 
     private int hvCost;
     private Node[][] searchArea;
     //used for start and goal node
-    private Node initialNode;
-    private Node finalNode;
-//create open and closed lists
+    private Node firstNode;
+    private Node goalNode;
+    //create open and closed lists
     private PriorityQueue<Node> openList;
     private Set<Node> closedSet;
 
-    //method for dinding path 
-    public Astar(int rows, int cols, Node initialNode, Node finalNode, int hvCost) {
+    //first constructor
+    public Astarr(int rows, int cols, Node firstNode, Node goalNode, int hvCost) {
         this.hvCost = hvCost;
-        setInitialNode(initialNode);
-        setFinalNode(finalNode);
+        setfirstNode(firstNode);
+        setgoalNode(goalNode);
         this.searchArea = new Node[rows][cols];
         this.openList = new PriorityQueue<Node>(new Comparator<Node>() {
             @Override
@@ -36,15 +36,15 @@ public class Astar {
         this.closedSet = new HashSet<>();
     }
 
-    public Astar(int rows, int cols, Node initialNode, Node finalNode) {
-        this(rows, cols, initialNode, finalNode, set_hv_cost);
+    public Astarr(int rows, int cols, Node firstNode, Node goalNode) {
+        this(rows, cols, firstNode, goalNode, set_hv_cost);
     }
 
     private void setNodes() {
         for (int i = 0; i < searchArea.length; i++) {
             for (int j = 0; j < searchArea[0].length; j++) {
                 Node node = new Node(i, j);
-                node.calculateHeuristic(getFinalNode());
+                node.calculateHeuristic(getgoalNode());
                 this.searchArea[i][j] = node;
             }
         }
@@ -59,13 +59,13 @@ public class Astar {
     }
 
     public List<Node> findPath() {
-        openList.add(initialNode);
+        openList.add(firstNode);
 
         while (!isEmpty(openList)) {
             Node currentNode = openList.poll();
             closedSet.add(currentNode);
             
-            if (isFinalNode(currentNode)) {
+            if (isgoalNode(currentNode)) {
                 return getPath(currentNode);
             } else {
                 addAdjacentNodes(currentNode);
@@ -150,8 +150,8 @@ public class Astar {
         }
     }
 
-    private boolean isFinalNode(Node currentNode) {
-        return currentNode.equals(finalNode);
+    private boolean isgoalNode(Node currentNode) {
+        return currentNode.equals(goalNode);
     }
 
     private boolean isEmpty(PriorityQueue<Node> openList) {
@@ -162,20 +162,20 @@ public class Astar {
         this.searchArea[row][col].setBlock(true);
     }
 
-    public Node getInitialNode() {
-        return initialNode;
+    public Node getfirstNode() {
+        return firstNode;
     }
 
-    public void setInitialNode(Node initialNode) {
-        this.initialNode = initialNode;
+    public void setfirstNode(Node firstNode) {
+        this.firstNode = firstNode;
     }
 
-    public Node getFinalNode() {
-        return finalNode;
+    public Node getgoalNode() {
+        return goalNode;
     }
 
-    public void setFinalNode(Node finalNode) {
-        this.finalNode = finalNode;
+    public void setgoalNode(Node goalNode) {
+        this.goalNode = goalNode;
     }
 
     public Node[][] getSearchArea() {
