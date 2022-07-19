@@ -11,18 +11,18 @@ public class Main {
         System.out.println("Enter the starting node, specifying the row and column (x y): ");
         row = in.nextInt(); //save input in respected x,y -> row/columns
         col = in.nextInt();
-        Node initialNode = new Node(row, col);
+        Node firstNode = new Node(row, col);
 
         ////user input for goal node
-        System.out.println("Enter the goal node, specifying the row and column (x y): ");
+        System.out.print("Enter the goal node, specifying the row and column (x y): ");
         row = in.nextInt(); //save input in respected x,y -> row/columns
         col = in.nextInt();
-        Node finalNode = new Node(row, col);
+        Node goalNode = new Node(row, col);
         int rows = 15;
         int cols = 15;
 
         //generating path using Astar
-        Astar path = new Astar(rows, cols, initialNode, finalNode);
+        Astarr path = new Astarr(rows, cols, firstNode, goalNode);
         int[][] blocksArray = new int[][]{{(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
             (int) (Math.random()*10)}, {(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
             (int) (Math.random()*10)}, {(int) (Math.random()*10), (int) (Math.random()*10)}, {(int) (Math.random()*10), 
@@ -36,20 +36,20 @@ public class Main {
         for(int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++) {
                 int block = 0;
-                for (int b = 0; b < blocksArray.length; b++) {
+                for (int b = 0; b < blocksArray.length; b++) { //displays somes blocks
                     row = blocksArray[b][0];
                     col = blocksArray[b][1];
                     if(row==i && col==j) {
-                        System.out.print("B"+" ");
+                        System.out.print("*"+" ");
                         block=1;
                     }
                 }
                 if(block==0)
-                System.out.print("-"+" ");
+                System.out.print("<>"+" ");
             }
             System.out.println("\n");
         }
-        path.setBlocks(blocksArray);
+        path.generateBlocks(blocksArray);
         List<Node> optimalPath = path.findPath();
         for (Node node : optimalPath) {
             System.out.print("["+node.getRow()+","+node.getCol()+"] ");
