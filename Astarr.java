@@ -134,17 +134,17 @@ public class Astarr {
     }
 
     private void checkNode(Node currentNode, int col, int row, int cost) {
-        Node adjacentNode = getarea()[row][col];
-        if (!adjacentNode.isBlock() && !getClosedSet().contains(adjacentNode)) {
-            if (!getOpenList().contains(adjacentNode)) {
-                adjacentNode.setNodeData(currentNode, cost);
-                getOpenList().add(adjacentNode);
+        Node nextNode = getarea()[row][col];
+        if (!nextNode.isBlock() && !getClosedSet().contains(nextNode)) {
+            if (!getOpenList().contains(nextNode)) {
+                nextNode.setNodeData(currentNode, cost);
+                getOpenList().add(nextNode);
             } else {
-                boolean changed = adjacentNode.checkBetterPath(currentNode, cost);
+                boolean changed = nextNode.checkBetterPath(currentNode, cost);
                 if (changed) {
                     //updates the open list by addiing or removing the changed node to update the queue                    
-                    getOpenList().remove(adjacentNode);
-                    getOpenList().add(adjacentNode);
+                    getOpenList().remove(nextNode);
+                    getOpenList().add(nextNode);
                 }
             }
         }
@@ -209,5 +209,4 @@ public class Astarr {
     public void setHvCost(int hvCost) {
         this.hvCost = hvCost;
     }
-
 }

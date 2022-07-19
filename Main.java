@@ -40,7 +40,7 @@ public class Main {
                     row = blocksArray[b][0];
                     col = blocksArray[b][1];
                     if(row==i && col==j) {
-                        System.out.print("B"+" ");
+                        System.out.print("*"+" ");
                         block=1;
                     }
                 }
