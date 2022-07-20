@@ -12,7 +12,8 @@ Details: Language: Java version: 17.0.1 IDE: VSCode Imports: No extra imports ar
 
 Sample output:
 
-astar_output.png
+![astar_output](https://user-images.githubusercontent.com/87623211/180045929-5f533a2d-4cdf-4409-a73c-a7176c59f646.png)
+
 
 a. Tests whether the users start and goal node are pathable by ensuring it is not less than 0 for x and y - Continuously ask for users input 
 b. Outputs environment with block nodes and the path at the bottem
