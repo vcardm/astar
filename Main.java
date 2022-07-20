@@ -25,9 +25,7 @@ public class Main {
         // while (row < 0 & col < 0){
         //     System.out.println("NO path");
         // }
-        
-    
-        Node firstNode = new Node(row, col);
+        Node firstNode = new Node(row, col);//save users input in firstNode as the starting node
 
         ////user input for goal node
         //do-while loop to ensure it is a poristive number for it be pathable  b i.
@@ -50,7 +48,8 @@ public class Main {
         // if (col < 0){
         //     System.out.println("NO path");
         // }
-        Node goalNode = new Node(row, col);
+        Node goalNode = new Node(row, col); //save users input in goalNode as the final/goal node
+
         int rows = 15;
         int cols = 15;
 
@@ -77,7 +76,7 @@ public class Main {
         for(int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++) {
                 int block = 0;
-                for (int b = 0; b < blocksArray.length; b++) { //displays somes blocks
+                for (int b = 0; b < blocksArray.length; b++) { //displays the blocked nodes
                     row = blocksArray[b][0];
                     col = blocksArray[b][1];
                     if(row==i && col==j) {
@@ -86,16 +85,17 @@ public class Main {
                     }
                 }
                 if(block==0)
-                System.out.print("<>"+" ");
+                System.out.print("<>"+" "); //actual output of envuronement 
             }
             System.out.println("\n");
         }
         path.generateBlocks(blocksArray);
         List<Node> optimalPath = path.findPath();
+
+        System.out.println("-Path-");
+        System.out.println("From Start Node to Goal Node:");
         for (Node node : optimalPath) {
             //outputs path
-            System.out.println("-Path-");
-            System.out.println("From Start Node to Goal Node:");
             System.out.print("["+node.getRow()+","+node.getCol()+"] ");
         }
     }
