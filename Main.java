@@ -8,15 +8,47 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         //user input for starting node
-        System.out.println("Enter the starting node, specifying the row and column (x y): ");
-        row = in.nextInt(); //save input in respected x,y -> row/columns
-        col = in.nextInt();
+        System.out.println("-Starting Node-");
+        // while {
+            do {
+                System.out.println("Enter the starting node, specifying the row (x) Ensuring it is greater than 0: ");
+                row = in.nextInt();
+            } while ( !(row > 0) ); 
+            do {
+                System.out.println("Enter the starting node, specifying the column (y) Ensuring it is greater than 0: ");
+                col = in.nextInt();
+            } while (!(col > 0));
+        // System.out.println("Enter the starting node, specifying the row and column (x y): ");
+        // row = in.nextInt(); //save input in respected x,y -> row/columns
+        // col = in.nextInt();
+        
+        // while (row < 0 & col < 0){
+        //     System.out.println("NO path");
+        // }
+        
+    
         Node firstNode = new Node(row, col);
 
         ////user input for goal node
-        System.out.print("Enter the goal node, specifying the row and column (x y): ");
-        row = in.nextInt(); //save input in respected x,y -> row/columns
-        col = in.nextInt();
+        System.out.println("-Goal Node-");
+        // while {
+            do {
+                System.out.println("Enter the goal node, specifying the row (x) Ensuring it is greater than 0: ");
+                row = in.nextInt();
+            } while ( !(row > 0) ); 
+            do {
+                System.out.println("Enter the goal node, specifying the column (y) Ensuring it is greater than 0: ");
+                col = in.nextInt();
+            } while (!(col > 0));
+        // System.out.print("Enter the goal node, specifying the row and column (x y): ");
+        // row = in.nextInt(); //save input in respected x,y -> row/columns
+        // col = in.nextInt();
+        // if (row < 0){
+        //     System.out.println("NO path");
+        // }
+        // if (col < 0){
+        //     System.out.println("NO path");
+        // }
         Node goalNode = new Node(row, col);
         int rows = 15;
         int cols = 15;
