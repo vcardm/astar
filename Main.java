@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         int row, col = 0;
 
         //b. getting users input 
@@ -18,6 +18,7 @@ public class Main {
                 System.out.println("Enter the starting node, specifying the column (y) Ensuring it is greater than 0: ");
                 col = in.nextInt();
             } while (!(col > 0));
+        
         // System.out.println("Enter the starting node, specifying the row and column (x y): ");
         // row = in.nextInt(); //save input in respected x,y -> row/columns
         // col = in.nextInt();
@@ -25,10 +26,11 @@ public class Main {
         // while (row < 0 & col < 0){
         //     System.out.println("NO path");
         // }
-        
-    
-        Node firstNode = new Node(row, col);
+        Node firstNode = new Node(row, col);//save users input in firstNode as the starting node
+        System.out.println("Starting node: " + firstNode); //printout starting node
 
+        System.out.println("-----------------------------------------");
+        Thread.sleep(500);
         ////user input for goal node
         //do-while loop to ensure it is a poristive number for it be pathable  b i.
         System.out.println("-Goal Node-");
@@ -50,7 +52,13 @@ public class Main {
         // if (col < 0){
         //     System.out.println("NO path");
         // }
-        Node goalNode = new Node(row, col);
+        Node goalNode = new Node(row, col); //save users input in goalNode as the final/goal node
+        System.out.println("Final node: " + goalNode);
+
+        System.out.println("-----------------------------------------");
+        Thread.sleep(500);
+
+
         int rows = 15;
         int cols = 15;
 
@@ -72,12 +80,14 @@ public class Main {
             row = 0;
             col = 0;
 
+            Thread.sleep(500);
+
             //b. i. displaying environemnt
         System.out.println("Envrionment:");
         for(int i=0; i<rows; i++) {
             for (int j=0; j<cols; j++) {
                 int block = 0;
-                for (int b = 0; b < blocksArray.length; b++) { //displays somes blocks
+                for (int b = 0; b < blocksArray.length; b++) { //displays the blocked nodes
                     row = blocksArray[b][0];
                     col = blocksArray[b][1];
                     if(row==i && col==j) {
@@ -86,17 +96,18 @@ public class Main {
                     }
                 }
                 if(block==0)
-                System.out.print("<>"+" ");
+                System.out.print("<>"+" "); //actual output of envuronement 
             }
             System.out.println("\n");
         }
         path.generateBlocks(blocksArray);
         List<Node> optimalPath = path.findPath();
+
+        System.out.println("-Path-");
+        System.out.println("From Start Node to Goal Node:");
         for (Node node : optimalPath) {
             //outputs path
-            System.out.println("-Path-");
-            System.out.println("From Start Node to Goal Node:");
-            System.out.print("["+node.getRow()+","+node.getCol()+"] ");
+            System.out.print("["+node.getRow()+","+node.getCol()+"] ->  ");
         }
     }
 }
