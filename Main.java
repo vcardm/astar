@@ -30,6 +30,7 @@ public class Main {
         Node firstNode = new Node(row, col);
 
         ////user input for goal node
+        //do-while loop to ensure it is a poristive number for it be pathable  b i.
         System.out.println("-Goal Node-");
         // while {
             do {
