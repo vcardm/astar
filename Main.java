@@ -93,6 +93,9 @@ public class Main {
         path.generateBlocks(blocksArray);
         List<Node> optimalPath = path.findPath();
         for (Node node : optimalPath) {
+            //outputs path
+            System.out.println("-Path-");
+            System.out.println("From Start Node to Goal Node:");
             System.out.print("["+node.getRow()+","+node.getCol()+"] ");
         }
     }
