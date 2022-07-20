@@ -12,7 +12,11 @@ Details: Language: Java version: 17.0.1 IDE: VSCode Imports: No extra imports ar
 
 Sample output:
 
-![astar_output](https://user-images.githubusercontent.com/87623211/180045929-5f533a2d-4cdf-4409-a73c-a7176c59f646.png)
+
+![astar_output00](https://user-images.githubusercontent.com/87623211/180060852-a465f8e2-9789-4ed8-858a-b9a5751d62e2.png)
+
+![astar_output01](https://user-images.githubusercontent.com/87623211/180060856-8e2863aa-5d06-4814-85fc-aba4d38bf1c1.png)
+
 
 
 a. Tests whether the users start and goal node are pathable by ensuring it is not less than 0 for x and y - Continuously ask for users input 
