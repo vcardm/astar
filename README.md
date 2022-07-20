@@ -1,4 +1,4 @@
-# astar
+# ASTAR
 
 Program that implements the A* algorithm to find a path from any two given nodes.
 
@@ -8,4 +8,5 @@ from their starting node to the goal node. The agent must use the A* algorithm t
 Details: Language: Java version: 17.0.1 IDE: VSCode Imports: No extra imports are needed - Able to run as-is
 
 Sample output:
+
 ![astar_output](https://user-images.githubusercontent.com/87623211/180042475-0b144348-6df2-400f-b251-e67e5d1dc540.png)
