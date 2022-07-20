@@ -14,5 +14,5 @@ Sample output:
 
 astar_output.png
 
-a. Tests whether the users start and goal node are pathable by ensuring it is not less than 0 for x and y - Continues to ask for users input
+a. Tests whether the users start and goal node are pathable by ensuring it is not less than 0 for x and y - Continuously ask for users input 
 b. Outputs environment with block nodes and the path at the bottem
